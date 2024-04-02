@@ -1,18 +1,23 @@
 import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Navbar from './components/navbar';
-import { Mensaje } from './components/itemListContainer';
-
-const AppPadre = () => {
-  return(
-    <Mensaje mensaje="Todos los productos disponibles proximamente..." />
-  )
-}
+import { ItemListContainer } from './components/itemListContainer';
+import { ItemDetailContainer } from './components/itemDetailContainer';
 
 function App() {
   return (
-    <div className="App">
+    <div>
+      <BrowserRouter>
+
       <Navbar/>
-      <AppPadre/>
+
+      <Routes>
+        <Route path='/' element={ <ItemListContainer/> }/>
+        <Route path='/category/:id' element={ <ItemListContainer/> }/>
+        <Route path='/item/:id' element={ <ItemDetailContainer/> }/>
+      </Routes>
+
+      </BrowserRouter>
     </div>
   );
 }
